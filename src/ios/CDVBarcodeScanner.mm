@@ -310,7 +310,7 @@ parentViewController:(UIViewController*)parentViewController
     self.alternateXib         = alternateXib;
 
     self.is1D      = YES;
-    self.is2D      = YES;
+    self.is2D      = NO;
     self.capturing = NO;
     self.results = [NSMutableArray new];
 
@@ -952,9 +952,9 @@ parentViewController:(UIViewController*)parentViewController
 
 //--------------------------------------------------------------------------
 
-#define RETICLE_SIZE    500.0f
+#define RETICLE_SIZE    2000.0f
 #define RETICLE_WIDTH    10.0f
-#define RETICLE_OFFSET   60.0f
+#define RETICLE_OFFSET   0.0f
 #define RETICLE_ALPHA     0.4f
 
 //-------------------------------------------------------------------------
@@ -970,9 +970,9 @@ parentViewController:(UIViewController*)parentViewController
         CGContextSetStrokeColorWithColor(context, color.CGColor);
         CGContextSetLineWidth(context, RETICLE_WIDTH);
         CGContextBeginPath(context);
-        CGFloat lineOffset = (CGFloat) (RETICLE_OFFSET+(0.5*RETICLE_WIDTH));
-        CGContextMoveToPoint(context, lineOffset, RETICLE_SIZE/2);
-        CGContextAddLineToPoint(context, RETICLE_SIZE-lineOffset, (CGFloat) (0.5*RETICLE_SIZE));
+        
+        CGContextMoveToPoint(context, 0, RETICLE_SIZE/2);
+        CGContextAddLineToPoint(context, RETICLE_SIZE, (CGFloat) (0.5*RETICLE_SIZE));
         CGContextStrokePath(context);
     }
 
@@ -1065,7 +1065,7 @@ parentViewController:(UIViewController*)parentViewController
                           minAxis
                           );
 
-    [self.reticleView setFrame:rectArea];
+    // [self.reticleView setFrame:rectArea];
     self.reticleView.center = CGPointMake(self.view.center.x, self.view.center.y-self.toolbar.frame.size.height/2);
 }
 
